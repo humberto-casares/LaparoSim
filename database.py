@@ -50,7 +50,7 @@ class Database:
     
     def insertData(self, userKey, name, exercise, archive, img3d, maps, inference):
         # Constructing the query using f-string
-        qr = f"INSERT INTO data (`userKey`, `name`, `create_date`, `exercise`, `file`, `img3d`, `maps`, `inference`) VALUES ('{userKey}', '{name}', '{self.now_datetime()}', '{exercise}', '{archive}', '{img3d}', '{maps}', '{inference}');"
+        qr = f"INSERT INTO dataa (`userKey`, `name`, `create_date`, `exercise`, `file`, `img3d`, `maps`, `inference`) VALUES ('{userKey}', '{name}', '{self.now_datetime()}', '{exercise}', '{archive}', '{img3d}', '{maps}', '{inference}');"
         res=self.run_query(qr, 1)
         return res
     
@@ -63,7 +63,7 @@ class Database:
         baseName, _ = os.path.splitext(os.path.basename(fileName))
         archive=baseName+".csv"
         img3d=baseName+".png"
-        inference="{Resultado de API Backend}"
+        inference="Resultado de API Backend"
 
         try: 
             _=self.insertData(userKey, name, exercise, archive, img3d, maps_json, inference)
@@ -181,18 +181,18 @@ class Database:
         EndoEVI = (EXb+EYb+EZb)/(MaxVolI*100) #J/cm^3
 
         parameters = {
-        "Time": tiempo_escalar,
-        "Path Length": (PLD, PLI),
-        "Depth Perception": (DPD, DPI),
-        "Motion Smoothness": (MSD, MSI),
-        "Average Speed": (Mean_SpeedD, Mean_SpeedI),
-        "Average Acceleration": (Mean_AccD, Mean_AccI),
-        "Idle Time": (idleD, idleI),
-        "Economy of Area": (A_PLD, A_PLI),
-        "Economy of Volume": (A_VD, A_VI),
+        "Time (sec.)": tiempo_escalar,
+        "Path Length (m.)": (PLD, PLI),
+        "Depth Perception (m.)": (DPD, DPI),
+        "Motion Smoothness (in m/s^3)": (MSD, MSI),
+        "Average Speed (mm/s)": (Mean_SpeedD, Mean_SpeedI),
+        "Average Acceleration (mm/s^2)": (Mean_AccD, Mean_AccI),
+        "Idle Time (%)": (idleD, idleI),
+        "Economy of Area (au.)": (A_PLD, A_PLI),
+        "Economy of Volume (au.)": (A_VD, A_VI),
         "Bimanual Dexterity": BD,
-        "Energy of Area": (EndoEAD, EndoEAI),
-        "Energy of Volume": (EndoEVD, EndoEVI)
+        "Energy of Area (J/cm^2.)": (EndoEAD, EndoEAI),
+        "Energy of Volume (J/cm^3.)": (EndoEVD, EndoEVI)
         }
 
         return parameters
